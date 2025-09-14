@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Card from "./components/card/Card";
-
-//import { ModalUpdate } from "./components/create-modal/modal-update/modal-update";
+import { useFoodData } from "./hooks/userFoodData";
 import { ModalCreate } from "./components/create-modal/create-modal";
 
 function App() {
