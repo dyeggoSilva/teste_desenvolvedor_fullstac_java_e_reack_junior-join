@@ -84,8 +84,8 @@ http://localhost:5173/
 * Spring Web
 * Mavem
 * Flyway (Gerenciador de migrations)
-* Bamco H2(Bamco em memória)
-* Swagger OpenAPI 3 (Springdoc)
+* Banco de dados H2(Banco em memória)
+* Swagger OpenAPI 3
 * Docker
 * Mockito
 * JUnit
