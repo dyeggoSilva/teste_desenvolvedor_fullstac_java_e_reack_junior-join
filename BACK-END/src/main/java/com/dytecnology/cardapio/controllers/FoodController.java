@@ -4,6 +4,9 @@ import com.dytecnology.cardapio.dtos.request.FoodRequestDto;
 import com.dytecnology.cardapio.dtos.response.FoodResponseDto;
 import com.dytecnology.cardapio.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +28,8 @@ public class FoodController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
-    public List<FoodResponseDto> foods(){
-        return foodService.getAll();
+    public Page<FoodResponseDto> getAll(@PageableDefault(size = 6, sort = "titulo") Pageable pageable) {
+        return foodService.getAll(pageable);
     }
 
 
