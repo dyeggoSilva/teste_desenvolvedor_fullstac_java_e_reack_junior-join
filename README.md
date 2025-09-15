@@ -31,9 +31,12 @@ npm -v
 ```bash
 git clone git@github.com:dyeggoSilva/teste_desenvolvedor_fullstac_java_e_reack_junior-join.git
 ```
+---
+## 🔹 2. abra a pasta FRONT-END
+
 entre na pasta do projeto e depôs na pasta FRONT-END
 
-execute 
+dentro da pasta abra um terminal e execute o comando. 
 
 ```bash
 npm install
@@ -43,8 +46,20 @@ ou com Yarn
 ```bash
 yarn install
 ```
+
+## 🔹 3. faça o build da aplicação
+Com npm:
+
+```bash
+npm run build
+```
+Ou com yarn:
+```bash
+yarn run build
+```
+
 ---
-## 🔹 3. Rodar a aplicação em modo desenvolvimento
+## 🔹 4. Rodar a aplicação em modo desenvolvimento
 
 Com npm:
 
@@ -56,7 +71,7 @@ Ou com yarn:
 yarn run dev
 ```
 
-## 🔹 3. Abra o navegador e acesse o link
+## 🔹 5. Abra o navegador e acesse o link
 ```web
 http://localhost:5173/
 ```
