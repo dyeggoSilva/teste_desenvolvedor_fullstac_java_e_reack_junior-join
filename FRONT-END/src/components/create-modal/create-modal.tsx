@@ -12,6 +12,7 @@ interface InputProps {
 
 interface ModalProps {
   closeModal(): void;
+  refreshData(): void;
 }
 const Input = ({ label, value, updateValue }: InputProps) => {
   return (
@@ -26,7 +27,7 @@ const Input = ({ label, value, updateValue }: InputProps) => {
   );
 };
 
-export function ModalCreate({ closeModal }: ModalProps) {
+export function ModalCreate({ closeModal, refreshData }: ModalProps) {
   const [titulo, setTitulo] = useState("");
   const [preco, setPreco] = useState(0);
   const [img, setImg] = useState("");
@@ -44,13 +45,14 @@ export function ModalCreate({ closeModal }: ModalProps) {
 
   useEffect(() => {
     if (!isSuccess) return;
+    refreshData();
     closeModal();
   }, [closeModal, isSuccess]);
 
   return (
     <div className="modal-overlay">
       <div className="modal-body">
-        <h2>Cadastre un novo item no cardápio</h2>
+        <h2>Cadastre um novo produto no cardápio</h2>
         <form
           className="input-container"
           onSubmit={(e) => {
@@ -60,7 +62,7 @@ export function ModalCreate({ closeModal }: ModalProps) {
         >
           <Input label="Titulo" value={titulo} updateValue={setTitulo} />
           <Input label="Preço" value={preco} updateValue={setPreco} />
-          <Input label="Imagem" value={img} updateValue={setImg} />
+          <Input label="URL Imagem" value={img} updateValue={setImg} />
           <button type="submit" className="btn-primary">
             Postar
           </button>

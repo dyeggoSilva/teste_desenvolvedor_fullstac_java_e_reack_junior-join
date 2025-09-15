@@ -5,7 +5,10 @@ import com.dytecnology.cardapio.dtos.response.FoodResponseDto;
 import com.dytecnology.cardapio.entities.Food;
 import com.dytecnology.cardapio.repositorys.FoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -28,9 +31,9 @@ public class FoodService {
 
     }
 
-    public List<FoodResponseDto> getAll(){
-        List<FoodResponseDto> foodList =  foodRepository.findAll().stream().map(FoodResponseDto::new).toList();
-        return foodList;
+    public Page<FoodResponseDto> getAll(Pageable pageable) {
+        return foodRepository.findAll(pageable)
+                .map(FoodResponseDto::new);
     }
 
     public Optional<FoodResponseDto> buscarPorId(Long id) {
