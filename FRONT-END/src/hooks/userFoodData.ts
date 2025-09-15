@@ -1,37 +1,33 @@
-import axios, { type AxiosPromise } from "axios";
+import { useState, useEffect } from "react";
 import type { FoodData } from "../interfaces/FoodData";
-import { useQuery } from "@tanstack/react-query";
 
-const API_URL = "https://localhost:8080";
 
-const fetchData = async (): AxiosPromise<FoodData[]> => {
-  const response = axios.get(`${API_URL}/food`);
-  return response;
-};
+export function useFoodData(itemsPerPage = 6) {
+  const [data, setData] = useState<FoodData[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
-export function useFoodDataById(id: number) {
-  const query = useQuery<FoodData>({
-    queryKey: ["food-data", id],
-    queryFn: async () => {
-      const response = await fetch(`${API_URL}/food/${id}`);
-      if (!response.ok) throw new Error("Erro ao buscar dados");
-      return response.json();
-    },
-    enabled: !!id,
-  });
+  const fetchData = async () => {
+    try {
+      const res = await fetch(
+        `http://localhost:8080/food?page=${currentPage}&size=${itemsPerPage}`
+      );
+      const json = await res.json();
 
-  return query;
-}
-
-export function useFoodData() {
-  const query = useQuery({
-    queryFn: fetchData,
-    queryKey: ["food-data"],
-    retry: 2,
-  });
-
-  return {
-    ...query,
-    data: query.data?.data,
+      setData(json.content as FoodData[]);
+      setTotalPages(json.totalPages - 1);
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage]);
+
+  const nextPage = () => setCurrentPage((p) => Math.min(p + 1, totalPages));
+  const prevPage = () => setCurrentPage((p) => Math.max(p - 1, 0));
+
+  return { data, currentPage, totalPages, nextPage, prevPage, refresh: fetchData };
 }
+

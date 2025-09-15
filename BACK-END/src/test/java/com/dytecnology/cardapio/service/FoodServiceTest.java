@@ -54,18 +54,7 @@ public class FoodServiceTest {
         verify(foodRepository, times(1)).save(any(Food.class));
     }
 
-    // ---------- getAll ----------
-    @Test
-    void testGetAllSuccess() {
-        when(foodRepository.findAll()).thenReturn(List.of(food));
-
-        List<FoodResponseDto> result = foodService.getAll();
-
-        assertEquals(1, result.size());
-        assertEquals("Pizza", result.get(0).titulo());
-        verify(foodRepository, times(1)).findAll();
-    }
-
+   
     // ---------- buscarPorId ----------
     @Test
     void testBuscarPorIdSuccess() {

@@ -1,37 +1,53 @@
 import { useState } from "react";
-import "./App.css";
 import Card from "./components/card/Card";
-import { useFoodData } from "./hooks/userFoodData";
 import { ModalCreate } from "./components/create-modal/create-modal";
+import { useFoodData } from "./hooks/userFoodData";
+import "./App.css";
+import type { FoodData } from "./interfaces/FoodData";
 
 function App() {
-  const { data } = useFoodData();
-
+  const { data, currentPage, totalPages, nextPage, prevPage, refresh } = useFoodData(6);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsModalOpen((prev) => !prev);
-  };
+  const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   return (
     <div className="container">
       <h1>Cardápio</h1>
 
       <div className="card-grid">
-        {data?.map((foodData) => (
+        {data.map((food: FoodData) => (
           <Card
-           key={foodData.id}
-            titulo={foodData.titulo}
-            img={foodData.img}
-            preco={foodData.preco}
-            id={foodData.id}
+            key={food.id}
+            titulo={food.titulo}
+            img={food.img}
+            preco={food.preco}
+            id={food.id}
+            refresh={refresh}
           />
         ))}
       </div>
+      
 
-      {isModalOpen && <ModalCreate closeModal={handleOpenModal} />}
+      <div className="pagination">
+        <button className="pag" onClick={prevPage} disabled={currentPage === 0}>
+          Anterior
+        </button>
+        <span>
+          Página {currentPage} de {totalPages}
+        </span>
+        <button
+          className="pag"
+          onClick={nextPage}
+          disabled={currentPage === totalPages}
+        >
+          Próximo
+        </button>
+      </div>
 
-      <button className="btn-novo" onClick={handleOpenModal}>
+      {isModalOpen && <ModalCreate closeModal={toggleModal} refreshData={refresh}/>}
+
+      <button className="btn-novo" onClick={toggleModal}>
         Create
       </button>
     </div>

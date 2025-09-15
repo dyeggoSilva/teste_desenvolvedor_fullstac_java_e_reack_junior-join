@@ -29,6 +29,19 @@
   
 .container button:hover {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 7px 0px;
-    transform: scale(1.1);
+    
 }
+.pag{
+    margin-top: 3rem;
+    margin: 3rem;
+    background-color: antiquewhite;
+    color:black;
+    border-radius: 5px;
+     cursor: pointer;
+     width: 5rem;
+     height: 2rem;
+     border:  none;
+}
+    
+
   
