@@ -4,15 +4,19 @@ import { ModalCreate } from "./components/create-modal/create-modal";
 import { useFoodData } from "./hooks/userFoodData";
 import "./App.css";
 import type { FoodData } from "./interfaces/FoodData";
+import Navbar from "./components/navbar/navbar";
 
 function App() {
-  const { data, currentPage, totalPages, nextPage, prevPage, refresh } = useFoodData(6);
+  const { data, currentPage, totalPages, nextPage, prevPage, refresh } = useFoodData(3);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen((prev) => !prev);
 
   return (
-    <div className="container">
+    <>
+    <Navbar/>
+      <div className="container">
+      
       <h1>Cardápio</h1>
 
       <div className="card-grid">
@@ -51,6 +55,9 @@ function App() {
         Create
       </button>
     </div>
+    </>
+    
+  
   );
 }
 
