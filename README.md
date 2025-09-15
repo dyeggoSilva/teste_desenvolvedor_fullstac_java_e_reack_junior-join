@@ -10,19 +10,6 @@
 * Axios
 * Vite
 
-## 🔹 Link Para o Front rodando no Render.
-
-```bash
-
-```
-
-Documentação com Swagger.
-
-```bash
-
-```
----
-
 ## 🚀 Instruções para rodar o Front-end localmente.
 
 O front foi desenvolvido em Reacte.  
@@ -96,7 +83,8 @@ http://localhost:5173/
 
 a API leva em torno de 50Seg para iniciar pela primeira vez.
 ```bash
-https://api-cardapio-protfolio.onrender.com/food
+https://api-cardapio-protfolio.onrender.com/food?page=0&size=6
+
 ```
 
 Documentação com Swagger.
@@ -106,11 +94,38 @@ https://api-cardapio-protfolio.onrender.com/swagger-ui/index.html#/
 ```
 ---
 
-#  🚀 Instruções para rodar o Back-end com Docker localmente.
+##  🚀 Instruções para rodar o Back-end localmente.
+
+## 🔹 Pré-requisitos
+* Java 21
+* Mavem
+
+### 1. Abra a pasta BACK-END.
+
+em seguida abra o terminal na pasta e execute o comando
+
+```bach
+mvn spring-boot:run
+```
+
+## 🔹 2. Testar no navegador
+
+Abra no navegador ou no Postman:
+
+```web
+http://localhost:8080/food?page=0&size=6
+```
+ou essa URL para Documentação no Swagger.
+
+```web
+http://localhost:8080/swagger-ui/index.html#/
+```
+---
+##  🚀 Instruções para rodar o Back-end com Docker.
 
 Este projeto já possui um **Dockerfile** configurado. Siga os passos abaixo para rodá-lo em um container Docker.
 
----
+
 
 ## 🔹 Pré-requisitos
 
