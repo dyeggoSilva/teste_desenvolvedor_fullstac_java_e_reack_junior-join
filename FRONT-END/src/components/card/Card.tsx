@@ -7,9 +7,10 @@ interface Cardprops {
   titulo: string;
   img: string;
   id: number;
+  refresh: () => void;
 }
 
-export default function Card({ id, titulo, img, preco }: Cardprops) {
+export default function Card({ id, titulo, img, preco, refresh}: Cardprops) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -18,7 +19,7 @@ export default function Card({ id, titulo, img, preco }: Cardprops) {
 
   return (
     <div className="card">
-      {isModalOpen && <ModalUpdate id={id} closeModal={handleOpenModal} />}
+      {isModalOpen && <ModalUpdate id={id} closeModal={handleOpenModal} refreshData={refresh}/>}
 
       <div className="card-int" onClick={handleOpenModal}>
         <img src={img || undefined} alt="foto" />
